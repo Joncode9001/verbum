@@ -1,0 +1,70 @@
+:root {
+    --grid-gap: 5px;
+    --board-width: 330px;
+    --board-height: 400px;
+
+    /* guess letter colors */
+    --border-color-guessing: #878a8c;
+    --border-color-no-guess: #d3d6da;
+
+    --font-color-guessing: black;
+    --font-color-guessed: white;
+
+    --background-guessing: white;
+    --background-absent: #787c7e;
+    --background-correct: #6aaa64;
+    --background-present: #c9b458;
+}
+
+.game-board {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-row-gap: var(--grid-gap);
+    max-width: var(--board-width);
+    height: var(--board-height);
+}
+
+.word-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: var(--grid-gap);
+    width: 100%;
+}
+
+.letter {
+    border: 2px solid var(--border-color-no-guess);
+
+    /* center text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* font style */
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.guessing {
+    border: 2px solid var(--border-color-guessing);
+    color: var(--font-color-guessing);
+    background: var(--background-guessing);
+}
+
+.absent {
+    border: none;
+    color: var(--font-color-guessed);
+    background: var(--background-absent);
+}
+
+.present {
+    border: none;
+    color: var(--font-color-guessed);
+    background: var(--background-present);
+}
+
+.correct {
+    border: none;
+    color: var(--font-color-guessed);
+    background: var(--background-correct);
+}
