@@ -1,4 +1,4 @@
-import {addLetter, backspaceLetter} from "./game";
+import {addLetter, backspaceLetter, submit} from "./game";
 
 let keys = document.getElementsByClassName("keyboard-key");
 for (let i = 0; i < keys.length; i++) {
@@ -27,6 +27,7 @@ document.addEventListener("keydown", e => {
 function typeKey(key: string) {
     switch (key) {
         case "enter":
+            submit();
             return;
         case "backspace":
             backspaceLetter();
