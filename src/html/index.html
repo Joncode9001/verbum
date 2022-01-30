@@ -5,52 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Verbdum</title>
-    <link rel="stylesheet" href="../css/word-box.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/game-board.css">
+    <link rel="stylesheet" href="../css/keyboard.css">
 </head>
 <body>
 
-<div class="game-board">
-    <div class="word-row">
-        <span class="letter correct">H</span>
-        <span class="letter present">E</span>
-        <span class="letter absent">L</span>
-        <span class="letter absent">L</span>
-        <span class="letter absent">O</span>
+<div id="game">
+    <div class="game-board">
+        <div class="word-row">
+            <span class="letter correct">H</span>
+            <span class="letter present">E</span>
+            <span class="letter absent">L</span>
+            <span class="letter absent">L</span>
+            <span class="letter absent">O</span>
+        </div>
+        <div class="word-row">
+            <span class="letter guessing">H</span>
+            <span class="letter guessing">A</span>
+            <span class="letter guessing">R</span>
+            <span class="letter guessing">E</span>
+            <span class="letter guessing">S</span>
+        </div>
+        <div class="word-row">
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+        </div>
+        <div class="word-row">
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+        </div>
+        <div class="word-row">
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+        </div>
+        <div class="word-row">
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+            <span class="letter"></span>
+        </div>
     </div>
-    <div class="word-row">
-        <span class="letter guessing">H</span>
-        <span class="letter guessing">A</span>
-        <span class="letter guessing">R</span>
-        <span class="letter guessing">E</span>
-        <span class="letter guessing">S</span>
-    </div>
-    <div class="word-row">
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-    </div>
-    <div class="word-row">
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-    </div>
-    <div class="word-row">
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-    </div>
-    <div class="word-row">
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
+
+    <div class="keyboard">
+        <div class="keyboard-row1">
+            <button class="keyboard-key">Q</button>
+            <button class="keyboard-key">W</button>
+            <button class="keyboard-key">E</button>
+            <button class="keyboard-key">R</button>
+            <button class="keyboard-key">T</button>
+            <button class="keyboard-key">Y</button>
+            <button class="keyboard-key">U</button>
+            <button class="keyboard-key">I</button>
+            <button class="keyboard-key">O</button>
+            <button class="keyboard-key">P</button>
+        </div>
+        <div class="keyboard-row2">
+            <span class="keyboard-spacer"></span>
+            <button class="keyboard-key">A</button>
+            <button class="keyboard-key">S</button>
+            <button class="keyboard-key">D</button>
+            <button class="keyboard-key">F</button>
+            <button class="keyboard-key">G</button>
+            <button class="keyboard-key">H</button>
+            <button class="keyboard-key">J</button>
+            <button class="keyboard-key">K</button>
+            <button class="keyboard-key">L</button>
+            <span class="keyboard-spacer"></span>
+        </div>
+        <div class="keyboard-row3">
+            <button class="keyboard-key enter-key">ENTER</button>
+            <button class="keyboard-key">Z</button>
+            <button class="keyboard-key">X</button>
+            <button class="keyboard-key">C</button>
+            <button class="keyboard-key">V</button>
+            <button class="keyboard-key">B</button>
+            <button class="keyboard-key">N</button>
+            <button class="keyboard-key">M</button>
+            <button class="keyboard-key backspace-key">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="var(--color-tone-1)" d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"></path>
+                </svg>
+            </button>
+        </div>
     </div>
 </div>
 

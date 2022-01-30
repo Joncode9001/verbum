@@ -2,26 +2,15 @@
     --grid-gap: 5px;
     --board-width: 330px;
     --board-height: 400px;
-
-    /* guess letter colors */
-    --border-color-guessing: #878a8c;
-    --border-color-no-guess: #d3d6da;
-
-    --font-color-guessing: black;
-    --font-color-guessed: white;
-
-    --background-guessing: white;
-    --background-absent: #787c7e;
-    --background-correct: #6aaa64;
-    --background-present: #c9b458;
 }
 
 .game-board {
     display: grid;
     grid-template-rows: repeat(6, 1fr);
     grid-row-gap: var(--grid-gap);
-    max-width: var(--board-width);
+    width: var(--board-width);
     height: var(--board-height);
+    margin: 8px auto;
 }
 
 .word-row {
