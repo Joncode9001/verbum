@@ -12,6 +12,8 @@
     --background-absent: #787c7e;
     --background-correct: #6aaa64;
     --background-present: #c9b458;
+
+    font-family: Arial, sans-serif;
 }
 
 html, body {

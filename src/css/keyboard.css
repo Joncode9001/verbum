@@ -3,6 +3,8 @@
     grid-template-rows: repeat(3, 1fr);
     grid-row-gap: 8px;
     margin: 10px 8px;
+
+    user-select: none;
 }
 
 .keyboard-row1 {
@@ -33,7 +35,6 @@
     justify-content: center;
 
     /* font */
-    font-family: Arial, sans-serif;
     font-weight: bold;
     font-size: 13px;
 }
