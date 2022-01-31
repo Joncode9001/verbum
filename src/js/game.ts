@@ -88,9 +88,18 @@ function toastWithMessage(message: string) {
     setTimeout(() => toastBag.removeChild(toastBag.lastElementChild), 2000)
 }
 
+function shakeWord(wordNumber: number) {
+    for (let i = 0; i < 5; i++) {
+        let letterElement = getLetterElement(wordNumber, i);
+        letterElement.setAttribute("data-animation", "shake");
+        setTimeout(() => letterElement.setAttribute("data-animation", ""), 600);
+    }
+}
+
 function guessWordInRow(word: string, answer: string, row: number) {
     if (!allowedGuesses.includes(word)) {
         toastWithMessage("Not in word list.");
+        shakeWord(window.currentWordNumber);
         return
     }
 
@@ -146,8 +155,13 @@ export function backspaceLetter() {
 }
 
 export function submit() {
-    if (window.currentLetterNumber == 5 && isPlaying()) {
-        guessWordInRow(window.currentlyGuessingWord, window.currentlyPlayingWord, window.currentWordNumber);
+    if (isPlaying()) {
+        if (window.currentLetterNumber == 5) {
+            guessWordInRow(window.currentlyGuessingWord, window.currentlyPlayingWord, window.currentWordNumber);
+        } else {
+            toastWithMessage("Not enough letters");
+            shakeWord(window.currentWordNumber);
+        }
     }
 }
 

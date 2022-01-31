@@ -6,8 +6,7 @@
     "dev": "parcel src/html/index.html --open",
     "start": "npm run build && npm run dev"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "parcel-bundler": "^1.12.4",
     "typescript": "^4.5.5"
