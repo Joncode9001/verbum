@@ -84,7 +84,7 @@ function toastWithMessage(message: string) {
     let toast = document.createElement("div");
     toast.innerText = message;
     toast.classList.add("toast");
-    toastBag.insertBefore(toast, toastBag.firstChild);
+    toastBag.prepend(toast);
     setTimeout(() => toastBag.removeChild(toastBag.lastElementChild), 2000)
 }
 
