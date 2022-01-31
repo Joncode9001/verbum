@@ -39,15 +39,21 @@
     font-size: 13px;
 }
 
-button.keyboard-key {
-    border: none;
-    cursor: pointer;
+.keyboard-key.absent {
+    color: var(--font-color-guessed);
+    background: var(--background-absent);
+}
+
+.keyboard-key.present {
+    color: var(--font-color-guessed);
+    background: var(--background-present);
+}
+
+.keyboard-key.correct {
+    color: var(--font-color-guessed);
+    background: var(--background-correct);
 }
 
 .enter-key {
     font-size: 12px;
-}
-
-.backspace-key {
-    font-size: 20px;
 }
