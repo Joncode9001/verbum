@@ -1,13 +1,23 @@
 header {
     border-bottom: 1px solid #d3d6da;
     margin: 8px 0;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.title {
-    width: 100%;
-    text-align: center;
-
+#header-title {
     font-weight: bold;
     font-size: 36px;
     letter-spacing: 0.2rem;
+}
+
+#header-help {
+    position: absolute;
+    left: 0;
+
+    cursor: pointer;
 }

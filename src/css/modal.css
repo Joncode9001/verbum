@@ -1,0 +1,96 @@
+#modal-bag {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#modal-bag.shown {
+    display: flex;
+    animation-name: SlideIn;
+    animation-duration: 200ms;
+}
+
+#modal-bag.hidden {
+    animation-name: SlideOut;
+    animation-duration: 400ms;
+}
+
+.modal {
+    position: relative;
+    width: 90%;
+    max-width: var(--max-game-width);
+
+    background: white;
+    border-radius: 8px;
+
+    border: 1px solid #f6f7f8;
+    box-shadow: 0 4px 23px 0 rgb(0 0 0 / 20%);
+}
+
+.modal-content {
+    margin: 2rem;
+    font-size: 14px;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    display: inline;
+}
+
+.modal-close-button {
+    float: right;
+    cursor: pointer;
+}
+
+.modal-content > h2 {
+    font-size: 1rem;
+}
+
+.modal-content > .word-row {
+    max-width: var(--board-width);
+    height: 62px;
+}
+
+@media screen and (max-width: 450px) {
+    .modal-content > .word-row {
+        max-width: 270px;
+        height: 50px;
+    }
+}
+
+@keyframes SlideIn {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes SlideOut {
+    0% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+    45% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+}

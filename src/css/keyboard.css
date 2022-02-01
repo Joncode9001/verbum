@@ -37,6 +37,8 @@
     /* font */
     font-weight: bold;
     font-size: 13px;
+
+    cursor: pointer;
 }
 
 .keyboard-key.absent {
