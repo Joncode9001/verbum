@@ -1,4 +1,4 @@
-import {verbdumForDay} from "./word-for-day";
+import {verbdumForDay, verbdumIdForDay} from "./word-for-day";
 import {allowedGuesses} from "./constants/allowed-guesses";
 
 interface CustomWindow extends Window {
@@ -6,14 +6,11 @@ interface CustomWindow extends Window {
     currentLetterNumber: number;
     currentlyGuessingWord: string;
     currentlyPlayingWord: string;
+    pastGuesses: Array<string>;
+    currentlyPlayingId: number;
 }
 
 declare let window: CustomWindow;
-
-window.currentWordNumber = 0;
-window.currentLetterNumber = 0;
-window.currentlyGuessingWord = "";
-window.currentlyPlayingWord = "     ";
 
 function clearLetter(element: Element) {
     element.textContent = "";
@@ -96,16 +93,27 @@ function shakeWord(wordNumber: number) {
     }
 }
 
-function guessWordInRow(word: string, answer: string, row: number) {
+function flipWord(wordNumber: number) {
+    for (let i = 0; i < 5; i++) {
+        let letterElement = getLetterElement(wordNumber, i);
+        setTimeout(() => letterElement.setAttribute("data-animation", "flip"), i * 200);
+    }
+}
+
+function guessWordInRow(word: string, answer: string, row: number, addToStorage: boolean = true) {
     if (!allowedGuesses.includes(word)) {
         toastWithMessage("Not in word list.");
         shakeWord(window.currentWordNumber);
         return
     }
 
+    window.pastGuesses.push(word);
+    flipWord(window.currentWordNumber);
+    if (addToStorage) appendGuess(window.currentlyPlayingId, word);
     window.currentWordNumber++;
     window.currentLetterNumber = 0;
     window.currentlyGuessingWord = "";
+
 
     let answerLetters = answer;
     for (let i = 0; i < 5; i++) {
@@ -134,8 +142,29 @@ function guessWordInRow(word: string, answer: string, row: number) {
     }
 }
 
+function appendGuess(id: number, guess: string) {
+    let currentGuessesText = localStorage.getItem(`guesses-${id}`);
+    if (currentGuessesText == null) {
+        localStorage.setItem(`guesses-${id}`, JSON.stringify([guess]))
+    } else {
+        let currentGuesses: Array<string> = JSON.parse(currentGuessesText);
+        currentGuesses.push(guess);
+        localStorage.setItem(`guesses-${id}`, JSON.stringify(currentGuesses))
+    }
+}
+
+function loadGuesses(id: number) {
+    let currentGuessesText = localStorage.getItem(`guesses-${id}`);
+    if (currentGuessesText != null) {
+        let currentGuesses: Array<string> = JSON.parse(currentGuessesText);
+        for (let i = 0; i < currentGuesses.length; i++) {
+            guessWordInRow(currentGuesses[i], window.currentlyPlayingWord, window.currentWordNumber, false);
+        }
+    }
+}
+
 function isPlaying(): boolean {
-    return window.currentWordNumber != 6
+    return window.currentWordNumber != 6 && !window.pastGuesses.includes(window.currentlyPlayingWord);
 }
 
 export function addLetter(letter: string) {
@@ -169,8 +198,11 @@ export function loadGameForDate(date: Date) {
     window.currentWordNumber = 0;
     window.currentLetterNumber = 0;
     window.currentlyGuessingWord = "";
+    window.pastGuesses = [];
     window.currentlyPlayingWord = verbdumForDay(date);
+    window.currentlyPlayingId = verbdumIdForDay(date);
     clearGameBoard();
     clearKeyboard();
-    console.log(`now playing ${window.currentlyPlayingWord}`);
+    loadGuesses(window.currentlyPlayingId);
+    console.log(`now playing ${window.currentlyPlayingWord} (${window.currentlyPlayingId})`);
 }

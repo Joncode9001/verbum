@@ -44,6 +44,12 @@
     animation-duration: 600ms;
 }
 
+.letter[data-animation='flip'] {
+    animation-name: Flip;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in-out;
+}
+
 @keyframes PopIn {
     from {
         transform: scale(0.8);
@@ -71,6 +77,20 @@
 
     40%, 60% {
         transform: translateX(4px);
+    }
+}
+
+@keyframes Flip {
+    from {
+        transform: rotateX(0);
+    }
+
+    50% {
+        transform: rotateX(-90deg);
+    }
+
+    to {
+        transform: rotateX(0);
     }
 }
 
