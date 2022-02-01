@@ -12,8 +12,8 @@ interface CustomWindow extends Window {
 
 declare let window: CustomWindow;
 
-function clearLetter(element: Element) {
-    element.textContent = "";
+function clearLetter(element: Element, text: boolean = true) {
+    if (text) { element.textContent = ""; }
     element.classList.remove("guessing");
     element.classList.remove("absent");
     element.classList.remove("present");
@@ -93,14 +93,17 @@ function shakeWord(wordNumber: number) {
     }
 }
 
-function flipWord(wordNumber: number) {
-    for (let i = 0; i < 5; i++) {
-        let letterElement = getLetterElement(wordNumber, i);
-        setTimeout(() => letterElement.setAttribute("data-animation", "flip"), i * 200);
-    }
+function setClueForLetter(wordNumber: number, letterNumber: number, letterValue: string, clue: "correct" | "present" | "absent") {
+    let letterElement = getLetterElement(wordNumber, letterNumber);
+    letterElement.setAttribute("data-animation", "flip");
+    setTimeout(() => {
+        letterElement.textContent = letterValue.toUpperCase();
+        letterElement.classList.add(clue);
+        setKeyboardKeyState(letterValue, clue);
+    }, 250);
 }
 
-function guessWordInRow(word: string, answer: string, row: number, addToStorage: boolean = true) {
+function guessWordInRow(word: string, answer: string, row: number, isInitialLoad: boolean = false) {
     if (!allowedGuesses.includes(word)) {
         toastWithMessage("Not in word list.");
         shakeWord(window.currentWordNumber);
@@ -108,36 +111,29 @@ function guessWordInRow(word: string, answer: string, row: number, addToStorage:
     }
 
     window.pastGuesses.push(word);
-    flipWord(window.currentWordNumber);
-    if (addToStorage) appendGuess(window.currentlyPlayingId, word);
+    if (!isInitialLoad) appendGuess(window.currentlyPlayingId, word);
     window.currentWordNumber++;
     window.currentLetterNumber = 0;
     window.currentlyGuessingWord = "";
 
-
     let answerLetters = answer;
+    const letterFlipDelay = isInitialLoad ? 100 : 300;
     for (let i = 0; i < 5; i++) {
         let letterElement = getLetterElement(row, i);
-        clearLetter(letterElement);
-        letterElement.innerHTML = word[i].toUpperCase();
+        clearLetter(letterElement, false);
         if (word[i] == answer[i]) {
-            letterElement.classList.add("correct");
-            setKeyboardKeyState(word[i], "correct");
+            setTimeout(() => setClueForLetter(row, i, word[i], "correct"), i * letterFlipDelay);
             answerLetters = answerLetters.replace(word[i], "");
         } else if (!answer.includes(word[i])) {
-            letterElement.classList.add("absent");
-            setKeyboardKeyState(word[i], "absent");
+            setTimeout(() => setClueForLetter(row, i, word[i], "absent"), i * letterFlipDelay);
         }
     }
     for (let i = 0; i < 5; i++) {
-        let letterElement = getLetterElement(row, i);
         if (word[i] != answer[i] && answerLetters.includes(word[i])) {
-            letterElement.classList.add("present");
-            setKeyboardKeyState(word[i], "present");
+            setTimeout(() => setClueForLetter(row, i, word[i], "present"), i * letterFlipDelay);
             answerLetters = answerLetters.replace(word[i], "");
         } else if (word[i] != answer[i]) {
-            letterElement.classList.add("absent");
-            setKeyboardKeyState(word[i], "absent");
+            setTimeout(() => setClueForLetter(row, i, word[i], "absent"), i * letterFlipDelay);
         }
     }
 }
@@ -158,7 +154,7 @@ function loadGuesses(id: number) {
     if (currentGuessesText != null) {
         let currentGuesses: Array<string> = JSON.parse(currentGuessesText);
         for (let i = 0; i < currentGuesses.length; i++) {
-            guessWordInRow(currentGuesses[i], window.currentlyPlayingWord, window.currentWordNumber, false);
+            guessWordInRow(currentGuesses[i], window.currentlyPlayingWord, window.currentWordNumber, true);
         }
     }
 }
