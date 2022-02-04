@@ -6,8 +6,30 @@ modalBagElement.addEventListener("click", () => {
 
 let helpElement = document.getElementById("header-help");
 helpElement.addEventListener("click", showHelpModal);
+let statsElement = document.getElementById("header-stats");
+statsElement.addEventListener("click", showStatsModal);
 
-export function showHelpModal() {
+let helpModal = document.getElementById("help-modal");
+let statsModal = document.getElementById("stats-modal");
+
+function hideAllModals() {
+    helpModal.classList.remove("shown");
+    statsModal.classList.remove("shown");
+}
+
+function showModal(modal: Element) {
     modalBagElement.classList.remove("hidden");
     modalBagElement.classList.add("shown");
+    hideAllModals();
+    modal.classList.add("shown");
+}
+
+
+
+export function showHelpModal() {
+    showModal(helpModal);
+}
+
+export function showStatsModal() {
+    showModal(statsModal);
 }

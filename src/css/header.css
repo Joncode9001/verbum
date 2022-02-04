@@ -17,7 +17,14 @@ header {
 
 #header-help {
     position: absolute;
-    left: 0;
+    left: 0.5rem;
+
+    cursor: pointer;
+}
+
+#header-stats {
+    position: absolute;
+    right: 0.5rem;
 
     cursor: pointer;
 }

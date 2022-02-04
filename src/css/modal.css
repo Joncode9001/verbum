@@ -27,6 +27,8 @@
 }
 
 .modal {
+    display: none;
+
     position: relative;
     width: 90%;
     max-width: var(--max-game-width);
@@ -36,6 +38,10 @@
 
     border: 1px solid #f6f7f8;
     box-shadow: 0 4px 23px 0 rgb(0 0 0 / 20%);
+}
+
+.modal.shown {
+    display: block;
 }
 
 .modal-content {
@@ -93,4 +99,66 @@
         opacity: 0;
         transform: translateY(60px);
     }
+}
+
+.stats-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    margin: 1rem 0;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 50px;
+
+    margin: 0 1rem;
+
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2.25rem;
+}
+
+.stat-name {
+    font-size: 12px;
+}
+
+.dist-container {
+    margin: 1rem 0;
+}
+
+.graph-container {
+    display: flex;
+    margin: 0.3rem;
+}
+
+.graph-id {
+    width: 8px;
+    margin: 0 4px;
+    line-height: 22px;
+}
+
+.graph {
+    background: #787c7e;
+    min-width: 1.3rem;
+}
+
+.graph-percent {
+    color: white;
+    font-weight: bold;
+    padding: 0.2rem 0.4rem;
+}
+
+#countdown-timer {
+    font-size: 2.25rem;
+    margin: 1rem 0;
+
+    width: 100%;
+    text-align: center;
 }

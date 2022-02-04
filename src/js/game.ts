@@ -1,4 +1,4 @@
-import {verbdumForDay, verbdumIdForDay} from "./word-for-day";
+import {verbdumForDay, verbdumForToday, verbdumIdForDay, verbdumIdForToday} from "./word-for-day";
 import {allowedGuesses} from "./constants/allowed-guesses";
 
 interface CustomWindow extends Window {
@@ -111,7 +111,10 @@ function guessWordInRow(word: string, answer: string, row: number, isInitialLoad
     }
 
     window.pastGuesses.push(word);
-    if (!isInitialLoad) appendGuess(window.currentlyPlayingId, word);
+    if (!isInitialLoad) {
+        appendGuess(window.currentlyPlayingId, word);
+        if (word == answer || row == 5) updateStatsFromSolve();
+    }
     window.currentWordNumber++;
     window.currentLetterNumber = 0;
     window.currentlyGuessingWord = "";
@@ -161,6 +164,61 @@ function loadGuesses(id: number) {
 
 function isPlaying(): boolean {
     return window.currentWordNumber != 6 && !window.pastGuesses.includes(window.currentlyPlayingWord);
+}
+
+interface Stats {
+    roundsPlayed: number,
+    roundsWon: number,
+    currentStreak: number,
+    maxStreak: number,
+    solveNumbers: number[]
+}
+
+export function readStats(): Stats {
+    let currentStatsString = localStorage.getItem("stats");
+    return currentStatsString != null ? JSON.parse(currentStatsString) : {
+        roundsPlayed: 0,
+        roundsWon: 0,
+        currentStreak: 0,
+        maxStreak: 0,
+        solveNumbers: [0, 0, 0, 0, 0, 0]
+    }
+}
+
+export function updateStatsPage() {
+    let currentStats = readStats();
+
+    document.getElementById("stat-played").innerText = currentStats.roundsPlayed.toString();
+    document.getElementById("stat-win-percent").innerText = Math.round((currentStats.roundsWon / currentStats.roundsPlayed) * 100).toString();
+    document.getElementById("stat-current-streak").innerText = currentStats.currentStreak.toString();
+    document.getElementById("stat-max-streak").innerText = currentStats.maxStreak.toString();
+
+    let solveNumbers = currentStats.solveNumbers;
+    let maxSolveNum = Math.max.apply(null, solveNumbers);
+
+    for (let i = 0; i < 6; i++) {
+        let graph = document.querySelectorAll(`[data-graph-num='${i+1}']`)[0] as HTMLElement;
+        graph.style.width = ((solveNumbers[i] / maxSolveNum) * 100).toString() + "%";
+        graph.children[0].textContent = solveNumbers[i].toString();
+    }
+}
+
+function updateStatsFromSolve() {
+    if (verbdumIdForToday() == window.currentlyPlayingId) {
+        let currentStats = readStats();
+        currentStats.roundsPlayed++;
+        if (window.pastGuesses.includes(window.currentlyPlayingWord)) {
+            currentStats.roundsWon++;
+            currentStats.currentStreak++;
+            currentStats.maxStreak = Math.max(currentStats.currentStreak, currentStats.maxStreak);
+            currentStats.solveNumbers[window.pastGuesses.length - 1]++;
+        } else {
+            currentStats.currentStreak = 0;
+        }
+
+        localStorage.setItem("stats", JSON.stringify(currentStats));
+        updateStatsPage();
+    }
 }
 
 export function addLetter(letter: string) {
