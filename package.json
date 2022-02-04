@@ -9,6 +9,10 @@
   "dependencies": {},
   "devDependencies": {
     "parcel-bundler": "^1.12.4",
+    "parcel-plugin-static-files-copy": "^2.6.0",
     "typescript": "^4.5.5"
+  },
+  "staticFiles": {
+    "staticPath": ["robots.txt", "site.webmanifest"]
   }
 }
