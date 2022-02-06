@@ -1,7 +1,5 @@
 import {loadGameForDate, updateStatsPage} from "./game";
-
-loadGameForDate(new Date());
-updateStatsPage();
+import {loadPreferredLanguage, translatePage} from "./translate";
 
 function startTimer(duration, display) {
     let start = Date.now(),
@@ -45,4 +43,7 @@ function getSecondsTillTomorrow(): number {
     return Math.round(diff / 1000); // convert to seconds
 }
 
+loadGameForDate(new Date());
+updateStatsPage();
 startTimer(getSecondsTillTomorrow(), document.getElementById("countdown-timer"));
+loadPreferredLanguage();

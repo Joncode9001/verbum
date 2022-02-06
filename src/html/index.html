@@ -13,25 +13,30 @@
     <meta name="msapplication-TileColor" content="#6aaa64">
     <meta name="theme-color" content="#ffffff">
 
-    <title>Verbdum</title>
+    <title data-trans="title">Verbdum - A Daily Word Game</title>
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
 
 <div id="game">
     <header>
-        <div id="header-help">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-                <path fill="#878a8c"
-                      d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"></path>
-            </svg>
+        <div id="header-left">
+            <div class="lang-switch" data-trans="current-lang">English</div>
         </div>
         <div id="header-title">VERBDUM</div>
-        <div id="header-stats">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-                <path fill="#878a8c"
-                      d="M16,11V3H8v6H2v12h20V11H16z M10,5h4v14h-4V5z M4,11h4v8H4V11z M20,19h-4v-6h4V19z"></path>
-            </svg>
+        <div id="header-right">
+            <div id="header-help">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="#878a8c"
+                          d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"></path>
+                </svg>
+            </div>
+            <div id="header-stats">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="#878a8c"
+                          d="M16,11V3H8v6H2v12h20V11H16z M10,5h4v14h-4V5z M4,11h4v8H4V11z M20,19h-4v-6h4V19z"></path>
+                </svg>
+            </div>
         </div>
     </header>
 
@@ -127,19 +132,19 @@
     <div id="modal-bag">
         <div id="help-modal" class="modal">
             <div class="modal-content">
-                <div class="modal-title">HOW TO PLAY</div>
+                <div class="modal-title" data-trans="htp-title">HOW TO PLAY</div>
                 <span class="modal-close-button">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
                         <path fill="#878a8c"
                               d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
                     </svg>
                 </span>
-                <p>Guess the <b>VERBDUM</b> in 6 tries or fewer.</p>
-                <p>Each guess must be a five letter Latin word.</p>
-                <p>After each guess the letters will be colored based on how close they
+                <p data-trans="htp-1">Guess the <b>VERBDUM</b> in 6 tries or fewer.</p>
+                <p data-trans="htp-2">Each guess must be a five letter Latin word.</p>
+                <p data-trans="htp-3">After each guess the letters will be colored based on how close they
                     were to the correct word.</p>
                 <hr/>
-                <h2>Examples</h2>
+                <h2 data-trans="htp-ex">Examples</h2>
                 <div class="word-row">
                     <span class="letter">C</span>
                     <span class="letter correct">A</span>
@@ -147,7 +152,7 @@
                     <span class="letter">I</span>
                     <span class="letter">S</span>
                 </div>
-                <p>The letter A is in the word and in the right place.</p>
+                <p data-trans="htp-ex-1">The letter A is in the word and in the right place.</p>
                 <div class="word-row">
                     <span class="letter">L</span>
                     <span class="letter">I</span>
@@ -155,7 +160,7 @@
                     <span class="letter">U</span>
                     <span class="letter">S</span>
                 </div>
-                <p>The letter T is in the word but not in the right place.</p>
+                <p data-trans="htp-ex-2">The letter T is in the word but not in the right place.</p>
                 <div class="word-row">
                     <span class="letter">H</span>
                     <span class="letter">O</span>
@@ -163,14 +168,15 @@
                     <span class="letter">A</span>
                     <span class="letter absent">E</span>
                 </div>
-                <p>The letter E is not in the word.</p>
+                <p data-trans="htp-ex-3">The letter E is not in the word.</p>
                 <hr/>
-                <p>There is a new <b>VERBDUM</b> each day or you can play past <b>VERBDUM</b>s in the archive.</p>
+                <p data-trans="htp-4">There is a new <b>VERBDUM</b> each day or you can play past <b>VERBDUM</b>s in the
+                    archive.</p>
             </div>
         </div>
         <div id="stats-modal" class="modal">
             <div class="modal-content">
-                <div class="modal-title">STATISTICS</div>
+                <div class="modal-title" data-trans="stat-title">STATISTICS</div>
                 <span class="modal-close-button">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
                         <path fill="#878a8c"
@@ -181,25 +187,25 @@
                 <div class="stats-container">
                     <div class="stat">
                         <div class="stat-value" id="stat-played">0</div>
-                        <div class="stat-name">Played</div>
+                        <div class="stat-name" data-trans="stat-played">Played</div>
                     </div>
                     <div class="stat">
                         <div class="stat-value" id="stat-win-percent">
                             0<span style="font-size: 12px">%</span>
                         </div>
-                        <div class="stat-name">Win %</div>
+                        <div class="stat-name" data-trans="stat-win">Win %</div>
                     </div>
                     <div class="stat">
                         <div class="stat-value" id="stat-current-streak">0</div>
-                        <div class="stat-name">Current Streak</div>
+                        <div class="stat-name" data-trans="stat-cstreak">Current Streak</div>
                     </div>
                     <div class="stat">
                         <div class="stat-value" id="stat-max-streak">0</div>
-                        <div class="stat-name">Max Streak</div>
+                        <div class="stat-name" data-trans="stat-mstreak">Max Streak</div>
                     </div>
                 </div>
 
-                <div class="modal-title">GUESS DISTRIBUTION</div>
+                <div class="modal-title" data-trans="stat-dist">GUESS DISTRIBUTION</div>
 
                 <div class="dist-container">
                     <div class="graph-container">
@@ -240,7 +246,7 @@
                     </div>
                 </div>
 
-                <div class="modal-title">NEXT VERBDUM</div>
+                <div class="modal-title" data-trans="stat-next">NEXT VERBDUM</div>
 
                 <div id="countdown-timer">
                     12:52:19

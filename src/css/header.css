@@ -15,16 +15,37 @@ header {
     letter-spacing: 0.2rem;
 }
 
-#header-help {
+#header-left {
     position: absolute;
     left: 0.5rem;
 
+    display: flex;
+}
+
+.lang-switch {
+    font-weight: bold;
+    color: #878a8c;
+
+    border: 2px solid #878a8c;
+    padding: 0.08rem 0.4rem;
+    border-radius: 20px;
+
     cursor: pointer;
+    user-select: none;
+}
+
+#header-help {
+    cursor: pointer;
+    margin-right: 0.5rem;
 }
 
 #header-stats {
+    cursor: pointer;
+}
+
+#header-right {
     position: absolute;
     right: 0.5rem;
 
-    cursor: pointer;
+    display: flex;
 }

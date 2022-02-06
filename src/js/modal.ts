@@ -1,3 +1,5 @@
+import {toggleTranslation} from "./translate";
+
 let modalBagElement = document.getElementById("modal-bag");
 modalBagElement.addEventListener("click", () => {
     modalBagElement.classList.add("hidden");
@@ -8,6 +10,10 @@ let helpElement = document.getElementById("header-help");
 helpElement.addEventListener("click", showHelpModal);
 let statsElement = document.getElementById("header-stats");
 statsElement.addEventListener("click", showStatsModal);
+let langSwitches = document.getElementsByClassName("lang-switch");
+for (let i = 0; i < langSwitches.length; i++) {
+    langSwitches[i].addEventListener("click", toggleTranslation);
+}
 
 let helpModal = document.getElementById("help-modal");
 let statsModal = document.getElementById("stats-modal");
