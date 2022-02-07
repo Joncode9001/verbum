@@ -16,6 +16,10 @@ export function translatePage(language: "latin" | "english") {
     }
 }
 
+export function getCurrentTextForId(id: string): string {
+    return translations[id][window.currentLanguage]
+}
+
 export function loadPreferredLanguage() {
     let preferredLanguage = localStorage.getItem("language") as ("latin" | "english" | null);
     translatePage(preferredLanguage ?? "latin");

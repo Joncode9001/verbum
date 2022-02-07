@@ -1,5 +1,6 @@
 import {verbdumForDay, verbdumForToday, verbdumIdForDay, verbdumIdForToday} from "./word-for-day";
 import {allowedGuesses} from "./constants/allowed-guesses";
+import {getCurrentTextForId} from "./translate";
 
 interface CustomWindow extends Window {
     currentWordNumber: number;
@@ -76,11 +77,12 @@ function setKeyboardKeyState(key: string, state: "correct" | "present" | "absent
     }
 }
 
-function toastWithMessage(message: string) {
+function toastWithMessage(messageId: string) {
     let toastBag = document.getElementById("toast-bag");
     let toast = document.createElement("div");
-    toast.innerText = message;
+    toast.innerText = getCurrentTextForId(messageId);
     toast.classList.add("toast");
+    toast.setAttribute("data-trans", messageId);
     toastBag.prepend(toast);
     setTimeout(() => toastBag.removeChild(toastBag.lastElementChild), 2000)
 }
@@ -105,7 +107,7 @@ function setClueForLetter(wordNumber: number, letterNumber: number, letterValue:
 
 function guessWordInRow(word: string, answer: string, row: number, isInitialLoad: boolean = false) {
     if (!allowedGuesses.includes(word)) {
-        toastWithMessage("Not in word list.");
+        toastWithMessage("toast-invalid-word");
         shakeWord(window.currentWordNumber);
         return
     }
@@ -242,7 +244,7 @@ export function submit() {
         if (window.currentLetterNumber == 5) {
             guessWordInRow(window.currentlyGuessingWord, window.currentlyPlayingWord, window.currentWordNumber);
         } else {
-            toastWithMessage("Not enough letters");
+            toastWithMessage("toast-too-few-letters");
             shakeWord(window.currentWordNumber);
         }
     }

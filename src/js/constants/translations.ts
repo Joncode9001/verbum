@@ -79,5 +79,13 @@ export const translations: TranslationSet = {
     "current-lang": {
         "english": "English",
         "latin": "Latine",
+    },
+    "toast-invalid-word": {
+        "english": "Not in word list.",
+        "latin": "Non in inventāriō verbōrum.",
+    },
+    "toast-too-few-letters": {
+        "english": "Not enough letters.",
+        "latin": "Non satis litterarum.",
     }
 };
