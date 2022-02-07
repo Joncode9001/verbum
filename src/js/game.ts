@@ -191,7 +191,7 @@ export function updateStatsPage() {
     let currentStats = readStats();
 
     document.getElementById("stat-played").innerText = currentStats.roundsPlayed.toString();
-    document.getElementById("stat-win-percent").innerText = Math.round((currentStats.roundsWon / currentStats.roundsPlayed) * 100).toString();
+    document.getElementById("stat-win-percent").innerText = Math.round((currentStats.roundsWon / currentStats.roundsPlayed) * 100 || 0).toString();
     document.getElementById("stat-current-streak").innerText = currentStats.currentStreak.toString();
     document.getElementById("stat-max-streak").innerText = currentStats.maxStreak.toString();
 
