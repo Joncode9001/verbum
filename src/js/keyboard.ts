@@ -17,7 +17,7 @@ document.addEventListener("keydown", e => {
             typeKey("backspace");
             return;
         default:
-            if (/^[a-z]$/.test(typedLetter)) {
+            if (/^[0-9]$/.test(typedLetter)) {
                 typeKey(typedLetter)
             }
             return;
